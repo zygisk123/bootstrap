@@ -31,7 +31,7 @@
   }
 
   // Tooltip and popover demos
-  document.querySelectorAll('.tooltip-demo')
+  document.querySelectorAll('.tooltip-demo, .bd-navbar')
     .forEach(function (tooltip) {
       new bootstrap.Tooltip(tooltip, {
         selector: '[data-bs-toggle="tooltip"]'
@@ -130,6 +130,62 @@
       modalTitle.textContent = 'New message to ' + recipient
       modalBodyInput.value = recipient
     })
+  }
+
+  // Toggle color modes
+
+  var root = document.documentElement
+  var activeTheme = localStorage.getItem('theme')
+  var activeThemeIcon = document.querySelector('.theme-icon-active use')
+
+  var checkSystemTheme = function () {
+    // if OS dark mode is set, and there's no stored theme, set the theme to dark (but don't store it)
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches && !activeTheme) {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      // otherwise, set the theme to the default (light)
+      document.documentElement.removeAttribute('data-theme')
+    }
+  }
+
+  var setTheme = function (theme) {
+    document.querySelectorAll('[data-theme-value]').forEach(function (el) {
+      el.classList.remove('active')
+    })
+
+    var btnToActive = document.querySelector('[data-theme-value="' + theme + '"]')
+    var svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
+
+    btnToActive.classList.add('active')
+    activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+  }
+
+  document.querySelectorAll('[data-theme-value]')
+    .forEach(function (toggle) {
+      toggle.addEventListener('click', function () {
+        var theme = this.getAttribute('data-theme-value')
+
+        setTheme(theme)
+
+        if (theme === 'auto') {
+          root.removeAttribute('data-theme')
+          localStorage.removeItem('theme')
+          checkSystemTheme()
+        } else {
+          root.setAttribute('data-theme', theme)
+          localStorage.setItem('theme', theme)
+        }
+      })
+    })
+
+  if (activeTheme) {
+    root.setAttribute('data-theme', activeTheme)
+    setTheme(activeTheme)
+  } else {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      checkSystemTheme()
+    })
+    checkSystemTheme()
   }
 
   // Insert copy to clipboard button before .highlight
