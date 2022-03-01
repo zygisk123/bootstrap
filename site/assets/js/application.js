@@ -15,6 +15,21 @@
 (function () {
   'use strict'
 
+  // Scroll the active sidebar link into view
+  var sidenav = document.querySelector('.bd-sidebar')
+  if (sidenav) {
+    var sidenavHeight = sidenav.clientHeight
+    var sidenavActiveLink = document.querySelector('.bd-links-nav .active')
+    var sidenavActiveLinkTop = sidenavActiveLink.offsetTop
+    var sidenavActiveLinkHeight = sidenavActiveLink.clientHeight
+    var viewportTop = sidenavActiveLinkTop
+    var viewportBottom = viewportTop - sidenavHeight + sidenavActiveLinkHeight
+
+    if (sidenav.scrollTop > viewportTop || sidenav.scrollTop < viewportBottom) {
+      sidenav.scrollTop = viewportTop - (sidenavHeight / 2) + (sidenavActiveLinkHeight / 2)
+    }
+  }
+
   // Tooltip and popover demos
   document.querySelectorAll('.tooltip-demo')
     .forEach(function (tooltip) {
@@ -119,7 +134,8 @@
 
   // Insert copy to clipboard button before .highlight
   var btnTitle = 'Copy to clipboard'
-  var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard">Copy</button></div>'
+  var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard"><svg class="bi" width="1em" height="1em" fill="currentColor" role="img" aria-label="Copy"><use xlink:href="#clipboard"/></svg></button></div>'
+
   document.querySelectorAll('div.highlight')
     .forEach(function (element) {
       element.insertAdjacentHTML('beforebegin', btnHtml)
@@ -153,13 +169,23 @@
   })
 
   clipboard.on('success', function (event) {
+    var iconFirstChild = event.trigger.querySelector('.bi').firstChild
     var tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
+    var namespace = 'http://www.w3.org/1999/xlink'
+    var originalXhref = iconFirstChild.getAttributeNS(namespace, 'href')
+    var originalTitle = event.trigger.title
 
     tooltipBtn.setContent({ '.tooltip-inner': 'Copied!' })
     event.trigger.addEventListener('hidden.bs.tooltip', function () {
       tooltipBtn.setContent({ '.tooltip-inner': btnTitle })
     }, { once: true })
     event.clearSelection()
+    iconFirstChild.setAttributeNS(namespace, 'href', originalXhref.replace('clipboard', 'check2'))
+
+    setTimeout(function () {
+      iconFirstChild.setAttributeNS(namespace, 'href', originalXhref)
+      event.trigger.title = originalTitle
+    }, 2000)
   })
 
   clipboard.on('error', function (event) {
