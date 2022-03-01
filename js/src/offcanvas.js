@@ -189,7 +189,6 @@ class Offcanvas extends BaseComponent {
     EventHandler.on(window, 'resize', () => {
       // Add this check to help js be aligned with css changes on responsive offcanvas
       if (this._isShown && getComputedStyle(this._element).position !== 'fixed') {
-        // this._backdrop.hide()
         this.hide()
       }
     })
