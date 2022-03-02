@@ -300,14 +300,15 @@ class Dropdown extends BaseComponent {
         name: 'applyCustomStyles',
         enabled: true,
         phase: 'afterWrite',
-        fn: () => {
+        fn: ({ state }) => {
           this._menu.style.removeProperty('position')
           const initialPosition = getComputedStyle(this._menu).position
           if (this._config.display === 'static' || initialPosition === 'static') {
-            // this._menu.style.position = 'static'
             this._menu.style.removeProperty('margin')
             this._menu.style.removeProperty('transform')
             Manipulator.setDataAttribute(this._menu, 'popper', 'static') // todo:v6 remove?
+          } else {
+            this._menu.style.position = state.styles.popper.position
           }
         }
       }]
