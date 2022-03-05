@@ -1,6 +1,13 @@
 .bd-masthead {
+  --bd-pink-rgb: #{to-rgb($pink)};
   padding: 3rem 0;
-  background: linear-gradient(165deg, tint-color($bd-purple-light, 85%) 50%, $white 50%);
+  // stylelint-disable
+  background-image: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), .01), rgba(var(--bs-body-bg-rgb), 1) 85%),
+                    radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), .5), transparent 50%),
+                    radial-gradient(ellipse at top right, rgba(var(--bd-accent-rgb), .5), transparent 50%),
+                    radial-gradient(ellipse at center right, rgba(var(--bd-violet-rgb), .5), transparent 50%),
+                    radial-gradient(ellipse at center left, rgba(var(--bd-pink-rgb), .5), transparent 50%);
+  // stylelint-enable
 
   h1 {
     @include font-size(4rem);
@@ -17,10 +24,12 @@
     padding: .5rem 4rem .5rem 1rem;
     margin-bottom: 0;
     line-height: 1.25;
+    background-color: rgba(var(--bs-body-color-rgb), .075);
     @include border-radius(.5rem);
   }
   .btn-clipboard {
     top: .5rem;
+    background-color: transparent;
   }
 
   #carbonads { // stylelint-disable-line selector-max-id
@@ -57,13 +66,15 @@
 
 .masthead-followup-icon {
   padding: 1rem;
-  background-color: currentColor;
-  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, .01), currentColor);
-  background-blend-mode: multiply;
+  color: rgba(var(--bg-rgb), 1);
+  background-color: rgba(var(--bg-rgb), .1);
+  background-blend-mode: multiple;
   @include border-radius(1rem);
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .15);
+  mix-blend-mode: darken;
 
-  svg { color: #fff; }
+  svg {
+    filter: drop-shadow(0 1px 1px #fff);
+  }
 }
 
 .masthead-followup-svg {
@@ -71,5 +82,6 @@
 }
 
 .masthead-notice {
-  background-color: #d2f4ea;
+  background-color: var(--bd-accent);
+  box-shadow: inset 0 -1px 1px rgba(var(--bs-body-color-rgb), .15), 0 .25rem 1.5rem rgba(var(--bs-body-bg-rgb), .75);
 }

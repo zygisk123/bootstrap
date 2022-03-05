@@ -16,4 +16,6 @@ $bd-callout-variants: info, warning, danger !default;
   --bd-accent: #{$bd-accent};
   --bd-violet-rgb: #{to-rgb($bd-violet)};
   --bd-accent-rgb: #{to-rgb($bd-accent)};
+  --bd-pink-rgb: #{to-rgb($pink-500)};
+  --bd-teal-rgb: #{to-rgb($teal-500)};
 }
