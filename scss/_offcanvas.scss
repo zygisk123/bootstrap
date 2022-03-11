@@ -2,15 +2,15 @@
 
 %offcanvas-css-vars {
   // scss-docs-start offcanvas-css-vars
-  --#{$prefix}offcanvas-width: #{$offcanvas-horizontal-width};
-  --#{$prefix}offcanvas-height: #{$offcanvas-vertical-height};
-  --#{$prefix}offcanvas-padding-x: #{$offcanvas-padding-x};
-  --#{$prefix}offcanvas-padding-y: #{$offcanvas-padding-y};
-  --#{$prefix}offcanvas-color: #{$offcanvas-color};
-  --#{$prefix}offcanvas-bg: #{$offcanvas-bg-color};
-  --#{$prefix}offcanvas-border-width: #{$offcanvas-border-width};
-  --#{$prefix}offcanvas-border-color: #{$offcanvas-border-color};
-  --#{$prefix}offcanvas-box-shadow: #{$offcanvas-box-shadow};
+  --#{$variable-prefix}offcanvas-width: #{$offcanvas-horizontal-width};
+  --#{$variable-prefix}offcanvas-height: #{$offcanvas-vertical-height};
+  --#{$variable-prefix}offcanvas-padding-x: #{$offcanvas-padding-x};
+  --#{$variable-prefix}offcanvas-padding-y: #{$offcanvas-padding-y};
+  --#{$variable-prefix}offcanvas-color: #{$offcanvas-color};
+  --#{$variable-prefix}offcanvas-bg: #{$offcanvas-bg-color};
+  --#{$variable-prefix}offcanvas-border-width: #{$offcanvas-border-width};
+  --#{$variable-prefix}offcanvas-border-color: #{$offcanvas-border-color};
+  --#{$variable-prefix}offcanvas-box-shadow: #{$offcanvas-box-shadow};
   // scss-docs-end offcanvas-css-vars
 }
 
@@ -35,12 +35,12 @@
       display: flex;
       flex-direction: column;
       max-width: 100%;
-      color: var(--#{$prefix}offcanvas-color);
+      color: var(--#{$variable-prefix}offcanvas-color);
       visibility: hidden;
-      background-color: var(--#{$prefix}offcanvas-bg);
+      background-color: var(--#{$variable-prefix}offcanvas-bg);
       background-clip: padding-box;
       outline: 0;
-      @include box-shadow(var(--#{$prefix}offcanvas-box-shadow));
+      @include box-shadow(var(--#{$variable-prefix}offcanvas-box-shadow));
       @include transition(transform $offcanvas-transition-duration ease-in-out);
 
       &.showing,
@@ -57,16 +57,16 @@
       &.offcanvas-start {
         top: 0;
         left: 0;
-        width: var(--#{$prefix}offcanvas-width);
-        border-right: var(--#{$prefix}offcanvas-border-width) solid var(--#{$prefix}offcanvas-border-color);
+        width: var(--#{$variable-prefix}offcanvas-width);
+        border-right: var(--#{$variable-prefix}offcanvas-border-width) solid var(--#{$variable-prefix}offcanvas-border-color);
         transform: translateX(-100%);
       }
 
       &.offcanvas-end {
         top: 0;
         right: 0;
-        width: var(--#{$prefix}offcanvas-width);
-        border-left: var(--#{$prefix}offcanvas-border-width) solid var(--#{$prefix}offcanvas-border-color);
+        width: var(--#{$variable-prefix}offcanvas-width);
+        border-left: var(--#{$variable-prefix}offcanvas-border-width) solid var(--#{$variable-prefix}offcanvas-border-color);
         transform: translateX(100%);
       }
 
@@ -74,26 +74,26 @@
         top: 0;
         right: 0;
         left: 0;
-        height: var(--#{$prefix}offcanvas-height);
+        height: var(--#{$variable-prefix}offcanvas-height);
         max-height: 100%;
-        border-bottom: var(--#{$prefix}offcanvas-border-width) solid var(--#{$prefix}offcanvas-border-color);
+        border-bottom: var(--#{$variable-prefix}offcanvas-border-width) solid var(--#{$variable-prefix}offcanvas-border-color);
         transform: translateY(-100%);
       }
 
       &.offcanvas-bottom {
         right: 0;
         left: 0;
-        height: var(--#{$prefix}offcanvas-height);
+        height: var(--#{$variable-prefix}offcanvas-height);
         max-height: 100%;
-        border-top: var(--#{$prefix}offcanvas-border-width) solid var(--#{$prefix}offcanvas-border-color);
+        border-top: var(--#{$variable-prefix}offcanvas-border-width) solid var(--#{$variable-prefix}offcanvas-border-color);
         transform: translateY(100%);
       }
     }
 
     @if not ($infix == "") {
       @include media-breakpoint-up($next) {
-        --#{$prefix}offcanvas-height: auto;
-        --#{$prefix}offcanvas-border-width: 0;
+        --#{$variable-prefix}offcanvas-height: auto;
+        --#{$variable-prefix}offcanvas-border-width: 0;
         background-color: transparent !important; // stylelint-disable-line declaration-no-important
 
         .offcanvas-header {
@@ -121,13 +121,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--#{$prefix}offcanvas-padding-y) var(--#{$prefix}offcanvas-padding-x);
+  padding: var(--#{$variable-prefix}offcanvas-padding-y) var(--#{$variable-prefix}offcanvas-padding-x);
 
   .btn-close {
-    padding: calc(var(--#{$prefix}offcanvas-padding-y) * .5) calc(var(--#{$prefix}offcanvas-padding-x) * .5);
-    margin-top: calc(var(--#{$prefix}offcanvas-padding-y) * -.5);
-    margin-right: calc(var(--#{$prefix}offcanvas-padding-x) * -.5);
-    margin-bottom: calc(var(--#{$prefix}offcanvas-padding-y) * -.5);
+    padding: calc(var(--#{$variable-prefix}offcanvas-padding-y) * .5) calc(var(--#{$variable-prefix}offcanvas-padding-x) * .5);
+    margin-top: calc(var(--#{$variable-prefix}offcanvas-padding-y) * -.5);
+    margin-right: calc(var(--#{$variable-prefix}offcanvas-padding-x) * -.5);
+    margin-bottom: calc(var(--#{$variable-prefix}offcanvas-padding-y) * -.5);
   }
 }
 
@@ -138,6 +138,6 @@
 
 .offcanvas-body {
   flex-grow: 1;
-  padding: var(--#{$prefix}offcanvas-padding-y) var(--#{$prefix}offcanvas-padding-x);
+  padding: var(--#{$variable-prefix}offcanvas-padding-y) var(--#{$variable-prefix}offcanvas-padding-x);
   overflow-y: auto;
 }
