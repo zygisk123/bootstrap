@@ -19,14 +19,9 @@
 
 .btn-clipboard,
 .btn-edit {
-  position: absolute;
-  top: .75em;
-  right: .5em;
-  z-index: 10;
   display: block;
-  padding: .5em .75em .625em;
+  padding: .5em;
   line-height: 1;
-  @include font-size(.65em);
   color: $gray-900;
   background-color: $gray-100;
   border: 0;
@@ -37,6 +32,16 @@
   }
 }
 
-.btn-edit {
-  right: 3.65rem;
+.btn-clipboard {
+  position: relative;
+  z-index: 2;
+  margin-top: .75rem;
+  margin-right: .75rem;
+}
+
+.highlight-toolbar {
+  .btn-clipboard {
+    margin-top: 0;
+    margin-right: 0;
+  }
 }
