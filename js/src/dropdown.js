@@ -308,7 +308,7 @@ class Dropdown extends BaseComponent {
             this._menu.style.removeProperty('transform')
             Manipulator.setDataAttribute(this._menu, 'popper', 'static') // todo:v6 remove?
           } else {
-            this._menu.style.position = state.styles.popper.position
+            this._menu.style.position = state.styles.popper.position // put back position
           }
         }
       }]
