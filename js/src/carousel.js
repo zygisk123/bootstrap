@@ -7,7 +7,6 @@
 
 import {
   defineJQueryPlugin,
-  getElementFromSelector,
   getNextActiveElement,
   isRTL,
   isVisible,
@@ -16,7 +15,7 @@ import {
 } from './util/index'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
-import SelectorEngine from './dom/selector-engine'
+import { getElementFromSelector, SelectorEngine } from './dom/selector-engine'
 import Swipe from './util/swipe'
 import BaseComponent from './base-component'
 

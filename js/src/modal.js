@@ -5,9 +5,9 @@
  * --------------------------------------------------------------------------
  */
 
-import { defineJQueryPlugin, getElementFromSelector, isRTL, isVisible, reflow } from './util/index'
+import { defineJQueryPlugin, isRTL, isVisible, reflow } from './util/index'
 import EventHandler from './dom/event-handler'
-import SelectorEngine from './dom/selector-engine'
+import { getElementFromSelector, SelectorEngine } from './dom/selector-engine'
 import ScrollBarHelper from './util/scrollbar'
 import BaseComponent from './base-component'
 import Backdrop from './util/backdrop'

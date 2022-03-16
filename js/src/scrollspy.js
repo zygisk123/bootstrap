@@ -5,10 +5,10 @@
  * --------------------------------------------------------------------------
  */
 
-import { defineJQueryPlugin, getElement, getSelectorFromElement } from './util/index'
+import { defineJQueryPlugin, getElement } from './util/index'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
-import SelectorEngine from './dom/selector-engine'
+import { getSelectorFromElement, SelectorEngine } from './dom/selector-engine'
 import BaseComponent from './base-component'
 
 /**

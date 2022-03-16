@@ -7,14 +7,13 @@
 
 import {
   defineJQueryPlugin,
-  getElementFromSelector,
   isDisabled,
   isVisible
 } from './util/index'
 import ScrollBarHelper from './util/scrollbar'
 import EventHandler from './dom/event-handler'
 import BaseComponent from './base-component'
-import SelectorEngine from './dom/selector-engine'
+import { getElementFromSelector, SelectorEngine } from './dom/selector-engine'
 import Backdrop from './util/backdrop'
 import FocusTrap from './util/focustrap'
 import { enableDismissTrigger } from './util/component-functions'

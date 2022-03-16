@@ -5,15 +5,14 @@
  * --------------------------------------------------------------------------
  */
 
-import {
-  defineJQueryPlugin,
-  getElement,
-  getElementFromSelector,
-  getSelectorFromElement,
-  reflow
-} from './util/index'
+import { defineJQueryPlugin, getElement, reflow } from './util/index'
 import EventHandler from './dom/event-handler'
-import SelectorEngine from './dom/selector-engine'
+import {
+  getElementFromSelector,
+  getMultipleElementsFromSelector,
+  getSelectorFromElement,
+  SelectorEngine
+} from './dom/selector-engine'
 import BaseComponent from './base-component'
 
 /**
@@ -285,10 +284,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
     event.preventDefault()
   }
 
-  const selector = getSelectorFromElement(this)
-  const selectorElements = SelectorEngine.find(selector)
-
-  for (const element of selectorElements) {
+  for (const element of getMultipleElementsFromSelector(this)) {
     Collapse.getOrCreateInstance(element, { toggle: false }).toggle()
   }
 })
